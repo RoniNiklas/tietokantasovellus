@@ -24,7 +24,7 @@
     return data
   }
   async function populateRestaurantInfo() {
-    const url = "http://localhost:5000/api/restaurants/1"
+    const url = window.location.href + "api/restaurants/1"
     let restaurant = await getJson(url)
     document.getElementById("name").innerText = restaurant.name
     document.getElementById("description").innerText = restaurant.description
@@ -33,7 +33,9 @@
     document.getElementById("url").innerText = "Url: " + restaurant.url
   }
   async function populateMenu() {
-    const url = "http://localhost:5000/api/menus/1"
+    console.log("WINDOW.href")
+    console.log(window.location.href)
+    const url = window.location.href + "api/menus/1"
     let menu = await getJson(url)
     let listDiv = document.getElementById("menu")
     let ul = document.createElement('ul')
