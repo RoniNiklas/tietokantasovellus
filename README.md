@@ -5,3 +5,6 @@ Ideana tehdä ruokatilaus-sovellus ravintolalle. Ravintolalla on annoksia. Asiak
 
 # Dokumentaatio
 [Tietokantakaavio](https://github.com/RoniNiklas/tietokantasovellus/blob/master/dokumentaatio/tietokantakaavio.jpg)
+
+# Käytettävissä
+[Heroku](https://roni-tietokantasovellus.herokuapp.com)
