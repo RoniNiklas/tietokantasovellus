@@ -6,10 +6,11 @@
   </head>
 
   <body>
+    {% block header %}
+    {% endblock %}
     {% block body %}
-    <p>
-  Tähän tuodaan sisältö muualta.
-    </p>
+    {% endblock %}
+    {% block footer %}
     {% endblock %}
   </body>
 </html>

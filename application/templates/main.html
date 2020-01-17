@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div id="restaurant">
+  <h1 id="name" />
+  <h4 id="description" />
+  <h4 id="address" />
+  <h4 id="phone" />
+  <h4 id="url" />
+</div>
+<div id="menu">
+  <h1>Menu: </h1>
+</div>
+<script>
+  async function getJson(url) {
+    let response = await fetch(url)
+    let data = await response.json()
+    console.log("URL")
+    console.log(url)
+    console.log("RESPONSE")
+    console.log(response)
+    console.log("DATA")
+    console.log(data)
+    return data
+  }
+  async function populateRestaurantInfo() {
+    const url = "http://localhost:5000/api/restaurants/1"
+    let restaurant = await getJson(url)
+    document.getElementById("name").innerText = restaurant.name
+    document.getElementById("description").innerText = restaurant.description
+    document.getElementById("address").innerText = "Osoite: " + restaurant.address
+    document.getElementById("phone").innerText = "Numero: " + restaurant.phone
+    document.getElementById("url").innerText = "Url: " + restaurant.url
+  }
+  async function populateMenu() {
+    const url = "http://localhost:5000/api/menus/1"
+    let menu = await getJson(url)
+    let listDiv = document.getElementById("menu")
+    let ul = document.createElement('ul')
+    console.log("Menu.length = ", menu.length)
+    for (var i = 0; i < menu.length; ++i) {
+      let li = document.createElement('li')
+      let itemName = document.createElement('p')
+      let itemDescription = document.createElement('p')
+      let itemPrice = document.createElement('p')
+      itemName.innerHTML = menu[i].name
+      itemDescription.innerHTML = menu[i].description
+      itemPrice.innerHTML = menu[i].price + "€"
+      li.appendChild(itemName)
+      li.appendChild(itemDescription)
+      li.appendChild(itemPrice)
+      ul.appendChild(li);
+    }
+    listDiv.appendChild(ul);    // Note here
+  }
+  populateRestaurantInfo()
+  populateMenu()
+</script>
+{% endblock %}
