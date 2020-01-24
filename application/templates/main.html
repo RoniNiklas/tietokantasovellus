@@ -1,17 +1,83 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<div id="restaurant">
-  <h1 id="name" />
-  <h4 id="description" />
-  <h4 id="address" />
-  <h4 id="phone" />
-  <h4 id="url" />
-</div>
-<div id="menu">
-  <h1>Menu: </h1>
+<div class="container">
+  <div class="row card" id="restaurant" style="margin-top:10px;">
+    <h5 class="card-header">Restaurant</h5>
+    <div class="card-body">
+      <div class="col-10">
+        <h5 class="card-title" id="name"></h5>
+        <div class="card-text" id="description"></div>
+        <div id="address"></div>
+        <div id="phone"></div>
+        <!-- <div id="url"></div> -->
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-8 card" id="menu">
+      <h5 class="card-header" id="menuHeader">Menu</h5>
+      <ul class="card-body" id="menuItemList" />
+    </div>
+    <div class="col-sm-8 card" id="checkout" style="display:none">
+      <h5 class="card-header" id="checkoutHeader">Checkout</h5>
+      <div class="card-body" id="checkoutBody">
+        <div class="card-text" id="checkoutText">
+          <div class="alert alert-danger" role="alert" id="checkoutError" style="display:none">No errors</div>
+          <form>
+            <div class="form-group">
+              <label for="inputName">Your Name</label>
+              <input type="text" class="form-control" id="inputName" aria-describedby="nameHelp"
+                placeholder="Enter name" valueType="name">
+            </div>
+            <div class="form-group">
+              <label for="inputAddress">Your Address</label>
+              <input type="text" class="form-control" id="inputAddress" aria-describedby="addressHelp"
+                placeholder="Enter Address" valueType="address">
+            </div>
+            <div class="form-group">
+              <label for="inputPhone">Your Phone Number</label>
+              <input type="text" class="form-control" id="inputPhone" aria-describedby="phoneHelp"
+                placeholder="Enter Phone Number" valueType="phone">
+            </div>
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="rememberMeBox" value="save">
+              <label class="form-check-label" for="rememberMe">Remember Me</label>
+            </div>
+            <button type="button" class="btn btn-danger" onClick="openMenu()">Go Back to Menu</button>
+            <button type="button" class="btn btn-primary" onClick="sendOrder()">Send Order</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-8 card" id="receipt" style="display:none">
+      <h5 class="card-header" id="receiptHeader">Your receipt</h5>
+      <div class="card-body" id="receiptBody">
+        <div class="card-text" id="receiptText">
+          <p>Thank you for your purchase! Underneath, you'll find a receipt for the order you've sent</p>
+          <p id="receiptName"></p>
+          <p id="receiptAddress"></p>
+          <p id="receiptPhone"></p>
+          <div id="receiptItems"></div>
+          <p id="receiptPrice" style="text-align: right"></p>
+          <Button type="button" class="btn btn-danger" onClick="openMenu()"> Close receipt </Button>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4 card" id="order" style="left: 0px; top:0px; right:0px; position: sticky; z-index:1000;">
+      <h5 class="card-header" id="orderHeader">Your Items</h5>
+      <div class="card-body" id="orderBody">
+        <div class="card-text" id="orderText"></div>
+        <div class="align-items-end" id="buttons" style="margin:10px;">
+          <Button type="button" class="btn btn-danger" onClick="clearOrder()"> Clear Order </Button>
+          <Button type="button" class="btn btn-primary" onClick="openCheckOut()">Move to Checkout</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <script>
+
   async function getJson(url) {
     let response = await fetch(url)
     let data = await response.json()
@@ -23,6 +89,7 @@
     console.log(data)
     return data
   }
+
   async function populateRestaurantInfo() {
     const url = window.location.href + "api/restaurants/1"
     let restaurant = await getJson(url)
@@ -30,32 +97,238 @@
     document.getElementById("description").innerText = restaurant.description
     document.getElementById("address").innerText = "Osoite: " + restaurant.address
     document.getElementById("phone").innerText = "Numero: " + restaurant.phone
-    document.getElementById("url").innerText = "Url: " + restaurant.url
+    //document.getElementById("url").innerText = "Url: " + restaurant.url
   }
+
   async function populateMenu() {
-    console.log("WINDOW.href")
-    console.log(window.location.href)
     const url = window.location.href + "api/menus/1"
     let menu = await getJson(url)
-    let listDiv = document.getElementById("menu")
-    let ul = document.createElement('ul')
-    console.log("Menu.length = ", menu.length)
-    for (var i = 0; i < menu.length; ++i) {
-      let li = document.createElement('li')
-      let itemName = document.createElement('p')
+    let ul = document.getElementById('menuItemList')
+    menu.forEach(item => {
+      let div = document.createElement('div')
+      div.className = "card"
+      let li = document.createElement('div')
+      li.className = "card-body"
+      let itemName = document.createElement('h5')
+      itemName.className = "card-header"
       let itemDescription = document.createElement('p')
+      itemDescription.className = "card-text"
       let itemPrice = document.createElement('p')
-      itemName.innerHTML = menu[i].name
-      itemDescription.innerHTML = menu[i].description
-      itemPrice.innerHTML = menu[i].price + "€"
-      li.appendChild(itemName)
+      itemName.innerHTML = item.name
+      itemDescription.innerHTML = item.description
+      itemPrice.innerHTML = item.price + "€"
+      let button = document.createElement("BUTTON")
+      button.className = "btn btn-light"
+      let text = document.createTextNode("Add to order")
+      button.appendChild(text)
+      button.addEventListener("click", addToOrder, false);
+      button.setAttribute("item", JSON.stringify(item))
+      ul.appendChild(itemName)
       li.appendChild(itemDescription)
       li.appendChild(itemPrice)
-      ul.appendChild(li);
-    }
-    listDiv.appendChild(ul);    // Note here
+      li.appendChild(button)
+      div.appendChild(li)
+      ul.appendChild(div)
+    })
   }
-  populateRestaurantInfo()
-  populateMenu()
+
+  function populateOrder(order) {
+    const orderBody = document.getElementById("orderText")
+    filicide(orderBody)
+    const itemList = document.createElement("ol")
+    order.items.forEach(item => {
+      const itemTag = document.createElement("div")
+      const itemNameTag = document.createElement("span")
+      itemNameTag.innerText = item.name
+      const itemPriceTag = document.createElement("span")
+      itemPriceTag.innerText = item.price + "€"
+      itemTag.style = "justify-content: space-between; display: flex"
+      itemNameTag.style = "text-align: left"
+      itemPriceTag.style = "text-align: right"
+      const button = document.createElement("BUTTON")
+      button.className = "btn btn-light"
+      let text = document.createTextNode("x")
+      button.appendChild(text)
+      button.addEventListener("click", removeFromOrder, false);
+      button.setAttribute("item", JSON.stringify(item))
+      itemTag.appendChild(itemNameTag)
+      itemTag.appendChild(itemPriceTag)
+      itemTag.appendChild(button)
+      itemList.appendChild(itemTag)
+    })
+    const orderSum = document.createElement("div")
+    orderSum.innerText = "Total price: " + order.price + "€"
+    orderSum.style = "text-align: right"
+    orderText.appendChild(itemList)
+    orderText.appendChild(orderSum)
+  }
+
+  function filicide(div) {
+    while (div.firstChild) {
+      div.firstChild.remove();
+    }
+  }
+
+  function createEmptyOrder() {
+    let order = {
+      restaurantId: 1,
+      name: window.localStorage.getItem("roninAppName") || "",
+      address: window.localStorage.getItem("roninAppAddress") || "",
+      phone: window.localStorage.getItem("roninAppPhone") || "",
+      date: Date(),
+      items: [],
+      price: 0,
+      nextId: 0
+    }
+    setOrder(order)
+    populateOrder(order)
+  }
+
+  function addToOrder(event) {
+    event.preventDefault()
+    let order = getOrder()
+    let item = JSON.parse(event.target.getAttribute("item"))
+    order.items.push(item)
+    order.nextId += 1;
+    item.frontEndId = order.nextId;
+    order.price = Math.round(100 * (order.price + item.price)) / 100
+    populateOrder(order)
+    setOrder(order)
+    return addToOrder
+  }
+
+  function removeFromOrder(event) {
+    event.preventDefault()
+    const order = getOrder()
+    const item = JSON.parse(event.target.getAttribute("item"))
+    order.items = order.items.filter(orderItem => orderItem.frontEndId != item.frontEndId)
+    order.price = Math.round(100 * (order.price - item.price)) / 100
+    populateOrder(order)
+    setOrder(order)
+  }
+
+  function getOrder() {
+    return JSON.parse(window.localStorage.getItem("order"))
+  }
+
+  function setOrder(order) {
+    window.localStorage.setItem("order", JSON.stringify(order))
+  }
+
+  function clearOrder() {
+    openMenu()
+    filicide(document.getElementById("orderText"))
+    createEmptyOrder()
+    return clearOrder
+  }
+
+  function openCheckOut() {
+    document.getElementById("menu").style.display = "none"
+    document.getElementById("checkout").style.display = ""
+    const order = getOrder()
+    const addressField = document.getElementById("inputAddress")
+    addressField.value = order.address
+    addressField.oninput = updateOrder
+    const nameField = document.getElementById("inputName")
+    nameField.value = order.name
+    nameField.oninput = updateOrder
+    const phoneField = document.getElementById("inputPhone")
+    phoneField.value = order.phone
+    phoneField.oninput = updateOrder
+    return openCheckOut
+  }
+
+  async function sendOrder(event) {
+    const order = getOrder()
+    if (validateOrder(order)) {
+      document.getElementById("checkoutError").style.display = "none"
+      if (document.getElementById("rememberMeBox").checked) {
+        window.localStorage.setItem("roninAppName", order.name)
+        window.localStorage.setItem("roninAppAddress", order.address)
+        window.localStorage.setItem("roninAppPhone", order.phone)
+      }
+      let receipt = await postData(window.location.href + "api/orders/1", order)
+      createReceipt(receipt)
+      openReceipt()
+      createEmptyOrder()
+    } else {
+      document.getElementById("checkoutError").style.display = ""
+      document.getElementById("checkoutError").innerText = "You need to fill in all information on the form and make sure your order contains at least one item."
+    }
+  }
+
+  function createReceipt(receipt) {
+    const receiptDiv = document.getElementById("receipt").style.display
+    document.getElementById("receiptName").innerText = "Customer name: " + receipt.name
+    document.getElementById("receiptAddress").innerText = "Customer address: " + receipt.address
+    document.getElementById("receiptPhone").innerText = "Customer phone: " + receipt.phone
+    document.getElementById("receiptPrice").innerText = "Total price: " + receipt.price
+    const itemList = document.getElementById("receiptItems")
+    filicide(itemList)
+    receipt.items.forEach(item => {
+      const itemTag = document.createElement("div")
+      const itemNameTag = document.createElement("span")
+      itemNameTag.innerText = item.name
+      const itemPriceTag = document.createElement("span")
+      itemPriceTag.innerText = item.price + "€"
+      itemTag.style = "justify-content: space-between; display: flex"
+      itemNameTag.style = "text-align: left"
+      itemPriceTag.style = "text-align: right"
+      itemTag.appendChild(itemNameTag)
+      itemTag.appendChild(itemPriceTag)
+      itemList.appendChild(itemTag)
+    })
+  }
+
+  function openReceipt() {
+    document.getElementById("menu").style.display = "none"
+    document.getElementById("checkout").style.display = "none"
+    document.getElementById("order").style.display=  "none"
+    document.getElementById("receipt").style.display = ""
+  }
+
+  async function postData(url, data) {
+    let response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    }).catch(error => {
+      console.log("POST ERROR: ", error)
+    })
+    let receipt = response.json()
+    return receipt
+  }
+
+  function validateOrder(order) {
+    return (order.name && order.address && order.phone) && (order.items.length > 0)
+  }
+
+  function openMenu() {
+    document.getElementById("menu").style.display = ""
+    document.getElementById("order").style.display = ""
+    document.getElementById("checkout").style.display = "none"
+    document.getElementById("receipt").style.display = "none"
+  }
+
+  function updateOrder() {
+    const value = event.target.value
+    const type = event.target.getAttribute("valueType")
+    const order = getOrder()
+    order[type] = value
+    setOrder(order)
+    return updateOrder
+  }
+
+  async function init() {
+    await populateRestaurantInfo()
+    await populateMenu()
+    if (!(window.localStorage.getItem("order"))) {
+      createEmptyOrder()
+    }
+    populateOrder(getOrder())
+  }
+  window.onload = init
 </script>
 {% endblock %}

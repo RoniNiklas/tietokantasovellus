@@ -22,4 +22,5 @@ if len(Restaurant.query.limit(1).all()[0].menu) == 0:
     id = Restaurant.query.limit(1).all()[0].id
     db.session().add(MenuItem(id, "Pizza Bolognese", "Pizzaa jauhelihakastikkeella. Saatavana myös vegaanisena.", 8.50))
     db.session().add(MenuItem(id, "Neapolitan Pizza", "Aito Napolilainen pizza leivottuna italialaisesta 00-jauhosta. Saatavana myös gluteenittomana.", 9.60))
+    db.session().add(MenuItem(id, "Meat Lover's Fantasy", "Pizza, jossa täytteenä herkkusientä, grillattua munakoisoa, paprikaa, oliiveja ja valkosipulia.", 8.50))
     db.session.commit()

@@ -1,6 +1,8 @@
 from application import app
-from flask import Flask, render_template, jsonify
-from application.models.models import Restaurant
+from flask import Flask, render_template, jsonify, request
+from application import db
+from application.models.models import Restaurant, MenuItem, Order, OrderMenuItem
+import json
 
 
 @app.route("/")
@@ -17,12 +19,43 @@ def getRestaurant(restaurantId):
         "address": restaurant.address,
         "phone": restaurant.phone,
         "url": restaurant.url
-   })
+    })
+
 
 @app.route("/api/menus/<restaurantId>")
 def getMenu(restaurantId):
     menu = Restaurant.query.get(restaurantId).menu
     returnable = []
     for item in menu:
-        returnable.append({"name": item.name, "description": item.description, "price": item.price})
+        returnable.append({"id": item.id, "name": item.name,
+                           "description": item.description, "price": item.price})
     return jsonify(returnable)
+
+
+@app.route("/api/orders/<restaurantId>", methods=['POST'])
+def postOrder(restaurantId):
+    order = json.loads(request.data)
+    order['price'] = 0
+    returnableItemList = []
+    savedOrder = Order(
+        restaurantId, order['name'], order['address'], order['phone'], order['price'])
+    db.session().add(savedOrder)
+    for item in order['items']:
+        # Use actual db prices and items to calculate the price and give descriptions, rather than accepting whatever's posted by user
+        itemInDb = MenuItem.query.filter_by(id=item['id']).first()
+        savedOrder.price = round((savedOrder.price + itemInDb.price),2) 
+        returnableItemList.append({"id": itemInDb.id, "name": itemInDb.name,
+                           "description": itemInDb.description, "price": itemInDb.price})
+        # Create OrderMenuItem table items
+        db.session().add(OrderMenuItem(savedOrder.id, itemInDb.id))
+    db.session().commit()
+    
+    return jsonify({
+        "orderId": savedOrder.id,
+        "restaurantName": Restaurant.query.get(restaurantId).name,
+        "name": savedOrder.name,
+        "address": savedOrder.address,
+        "phone": savedOrder.phone,
+        "price": savedOrder.price,
+        "items": returnableItemList
+    })
