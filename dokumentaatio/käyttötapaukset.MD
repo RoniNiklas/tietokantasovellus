@@ -14,4 +14,5 @@ As a customer, I want to save an order template, so that I can place an order fa
 As a customer, I want to see my old orders, for whatever reason  
 As a restaurant owner, I want to add menu items, so that users can order new menu items  
 As a restaurant owner, I want to delete menu items, so that I can stop serving items that do not create profit  
+As a restaurant owner, I want to update menu items, so that I don't have to delete and create a new one whenever I want to make a small change to a menu item      
 As a restaurant owner, I want to create a new restaurant on the app  
