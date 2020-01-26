@@ -6,7 +6,7 @@ User Story # 2 Completed
 As a customer, I want to make an order, so that I can get food  
 User Story # 3 Completed  
 As a customer, I want to save my info, so that I an place an order faster the next time I use the app  
-User Story # 4 Completed
+User Story # 4 Completed   
 As a restaurant owner, I want to see the orders that have been placed, so that I can send the customer food  
   
 --- Potential future user stories, not prioritized     
