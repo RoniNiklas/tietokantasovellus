@@ -56,18 +56,21 @@ class Order(db.Model):
     phone = db.Column(db.String(144), nullable=False)
     price = db.Column(db.Integer, nullable=False)
     items = db.relationship('OrderMenuItem', backref='order', lazy=True)
-    def __init__ (self, restaurantId, name, address, phone, price):
+
+    def __init__(self, restaurantId, name, address, phone, price):
         self.restaurantId = restaurantId
         self.name = name
         self.address = address
         self.phone = phone
         self.price = price
 
+
 class OrderMenuItem(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     itemId = db.Column(db.Integer, db.ForeignKey(
         'menu_item.id'), nullable=False)
     orderId = db.Column(db.Integer, db.ForeignKey('order.id'), nullable=False)
-    def __init__ (self, itemId, orderId):
-        self.itemId = itemId
+
+    def __init__(self, orderId, itemId):
         self.orderId = orderId
+        self.itemId = itemId
