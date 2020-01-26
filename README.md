@@ -33,5 +33,6 @@ Asiakas:
 
 Root sivulla [https://roni-tietokantasovellus.herokuapp.com](https://roni-tietokantasovellus.herokuapp.com) asiakas voi tehdä tilauksia. Painele haluamiesi tuotteiden kohdalla Add To Order. Kun tilaus on valmis, siirry lähettämään tilaus painamalla Move To Checkout, täytä yhteystiedot aukeavaan lomakkeeseen ja paina Send Order. Saat vastauksena kuitin, jossa näkyy tilauksen tiedot.  
   
-  Ravintolan Omistaja
+  Ravintolan Omistaja:  
+  
 Kirjaudu sisään osoitteessa [https://roni-tietokantasovellus.herokuapp.com/auth/login](https://roni-tietokantasovellus.herokuapp.com/auth/login). Sivusto siirtää käyttäjän automaattisesti käyttäjään liitetyn ravintolan tilaustenhallinnasta vastaavalle sivulle. Sivulla näkyy aiemmat tilaukset. Uudet tilaukset tulevat näkyviin kunhan päivität sivua.
