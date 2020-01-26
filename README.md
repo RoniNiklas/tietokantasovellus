@@ -35,4 +35,4 @@ Root sivulla [https://roni-tietokantasovellus.herokuapp.com](https://roni-tietok
   
   Ravintolan Omistaja:  
   
-Kirjaudu sisään osoitteessa [https://roni-tietokantasovellus.herokuapp.com/auth/login](https://roni-tietokantasovellus.herokuapp.com/auth/login). Sivusto siirtää käyttäjän automaattisesti käyttäjään liitetyn ravintolan tilaustenhallinnasta vastaavalle sivulle. Sivulla näkyy aiemmat tilaukset. Uudet tilaukset tulevat näkyviin kunhan päivität sivua.
+Kirjaudu sisään osoitteessa [https://roni-tietokantasovellus.herokuapp.com/auth/login](https://roni-tietokantasovellus.herokuapp.com/auth/login) tunnuksilla Käyttäjä: Admin , Salasana: Password. Sivusto siirtää käyttäjän automaattisesti käyttäjään liitetyn ravintolan tilaustenhallinnasta vastaavalle sivulle. Sivulla näkyy aiemmat tilaukset. Uudet tilaukset tulevat näkyviin kunhan päivität sivua. Kellonajat ovat atm. 2h väärässä, johtuen tietokannan default aikavyöhykkeestä.
