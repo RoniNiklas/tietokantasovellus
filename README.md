@@ -22,6 +22,7 @@ As a restaurant owner, I want to create a new restaurant on the app
   
 # Dokumentaatio
 [Tietokantakaavio](https://github.com/RoniNiklas/tietokantasovellus/blob/master/dokumentaatio/tietokantakaavio.jpg)
+[Työaikairjanpito](https://github.com/RoniNiklas/tietokantasovellus/blob/master/dokumentaatio/ty%C3%B6aikakirjanpito)  
 
 # Käytettävissä
 [Heroku](https://roni-tietokantasovellus.herokuapp.com)
