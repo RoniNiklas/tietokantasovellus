@@ -6,7 +6,7 @@ User Story # 2 Completed
 As a customer, I want to make an order, so that I can get food  
 User Story # 3 Completed  
 As a customer, I want to save my info, so that I an place an order faster the next time I use the app  
-User Story # 4 Completed   
+User Story # 4 Completed  
 As a restaurant owner, I want to see the orders that have been placed, so that I can send the customer food  
   
 --- Potential future user stories, not prioritized     
@@ -16,3 +16,4 @@ As a restaurant owner, I want to add menu items, so that users can order new men
 As a restaurant owner, I want to delete menu items, so that I can stop serving items that do not create profit  
 As a restaurant owner, I want to update menu items, so that I don't have to delete and create a new one whenever I want to make a small change to a menu item      
 As a restaurant owner, I want to create a new restaurant on the app  
+Differentiate between restaurant OWNER (see orders, menu CRUD) and restaurant EMPLOYEE (can browse orders, but not manage menu).
