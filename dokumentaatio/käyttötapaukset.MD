@@ -16,6 +16,7 @@ As a restaurant owner, I want to add menu items, so that users can order new men
 As a restaurant owner, I want to delete menu items, so that I can stop serving items that do not create profit  
 As a restaurant owner, I want to update menu items, so that I don't have to delete and create a new one whenever I want to make a small change to a menu item      
 As a restaurant owner, I want to create a new restaurant on the app  
+As a restaurant employee, I want to filter the orders list so that I can find relevant stuff faster  
 
 # Technical tasks  
 Differentiate between restaurant OWNER (see orders, menu CRUD) and restaurant EMPLOYEE (can browse orders, but not manage menu).  
