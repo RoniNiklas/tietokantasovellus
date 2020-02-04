@@ -20,4 +20,4 @@ As a restaurant owner, I want to create a new restaurant on the app
 # Technical tasks  
 Differentiate between restaurant OWNER (see orders, menu CRUD) and restaurant EMPLOYEE (can browse orders, but not manage menu).  
 Clean up the JS/HTML to separate files 
-Rename stuff to make it clearer  
+Rename stuff to make it clearer, make authorization match other items rather than being in its own folder  
