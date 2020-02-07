@@ -4,12 +4,13 @@
 As a customer, I want to see what items are available, so that I can decide what I want to order  
 ## User Story # 2 Completed  
 As a customer, I want to make an order, so that I can get food    
-I should be able to add items to the order  
-The order should be passed to the server    
-The order should be saved in the DB  
-I should be able to see a confirmation of the order I have placed  
+    - I should be able to add items to the order  
+    - The order should be passed to the server    
+    - The order should be saved in the DB  
+    - I should be able to see a confirmation of the order I have placed  
 ## User Story # 3 Completed  
 As a customer, I want to save my info, so that I an place an order faster the next time I use the app  
+    - I don't want to do it everytime though, so it should be on an opt-in basis  
 ## User Story # 4 Completed  
 As a restaurant owner, I want to see the orders that have been placed, so that I can send the customer food    
     - I shouldn't be able to see other restaurants' orders  
