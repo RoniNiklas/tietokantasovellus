@@ -36,3 +36,4 @@ As a restaurant employee, I want to filter the orders list so that I can find re
 ## Technical tasks  
 Differentiate between restaurant OWNER (see orders, menu CRUD) and restaurant EMPLOYEE (can browse orders, but not manage menu).      
 Error messages to user from stupid stuff (like trying to browse nonexistent restaurant's orders, or manipulating order data manually before sending it to the server)  
+CSS styling needs work, especially for the manager view  
