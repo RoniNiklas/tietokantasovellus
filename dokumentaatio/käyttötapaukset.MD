@@ -12,18 +12,28 @@ I should be able to see a confirmation of the order I have placed
 As a customer, I want to save my info, so that I an place an order faster the next time I use the app  
 ## User Story # 4 Completed  
 As a restaurant owner, I want to see the orders that have been placed, so that I can send the customer food    
-    I shouldn't be able to see other restaurants' orders  
-    I shouldn't be able to see the orders if I'm not logged in  
+    - I shouldn't be able to see other restaurants' orders  
+    - I shouldn't be able to see the orders if I'm not logged in  
+## User Story # 5 Completed  
+As a restaurant owner, I want to add menu items, so that users can order new menu items    
+-  I shouldn't be able to add items on to other restaurants' menus  
+## User Story # 6 Completed  
+As a restaurant owner, I want to delete menu items, so that I can stop serving items that do not create profit  
+- I shouldn't be able to delete other restaurants' menu items
+- Items do not actually get deleted, since they're needed for old orders.  
+## User Story # 7 Completed
+As a restaurant owner, I want to update menu items, so that I don't have to delete and create a new one whenever I want to make a small change to a menu item       
+- I shouldn't be able to edit other people's menu items  
+- Old versions of the item do not actually get deleted, since they're needed for old orders.  
+   
   
 ## --- Potential future user stories, not prioritized     
 As a customer, I want to save an order template, so that I can place an order faster the next time I use the app  
-As a customer, I want to see my old orders, for whatever reason  
-As a restaurant owner, I want to add menu items, so that users can order new menu items  
-As a restaurant owner, I want to delete menu items, so that I can stop serving items that do not create profit  
-As a restaurant owner, I want to update menu items, so that I don't have to delete and create a new one whenever I want to make a small change to a menu item      
+As a customer, I want to see my old orders, for whatever reason   
 As a restaurant owner, I want to create a new restaurant on the app  
 As a restaurant employee, I want to filter the orders list so that I can find relevant stuff faster  
 
 ## Technical tasks  
 Differentiate between restaurant OWNER (see orders, menu CRUD) and restaurant EMPLOYEE (can browse orders, but not manage menu).      
 Error messages to user from stupid stuff (like trying to browse nonexistent restaurant's orders, or manipulating order data manually before sending it to the server)  
+Fix the length validation and number validation on posting menu items to actually validate and give error messages since the stupid fucking default thing does not do it.  
