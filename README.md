@@ -21,4 +21,4 @@ Root sivulla [https://roni-tietokantasovellus.herokuapp.com](https://roni-tietok
 Kirjaudu sisään osoitteessa [https://roni-tietokantasovellus.herokuapp.com/login](https://roni-tietokantasovellus.herokuapp.com/login) tunnuksilla   
 Käyttäjä: Admin   
 Salasana: Password     
-Sivusto siirtää käyttäjän automaattisesti käyttäjään liitetyn ravintolan tilaustenhallinnasta vastaavalle sivulle. Sivulla näkyy aiemmat tilaukset. Uudet tilaukset tulevat näkyviin kunhan päivität sivua. Kellonajat ovat atm. 2h väärässä, johtuen tietokannan default aikavyöhykkeestä.
+Sivusto siirtää käyttäjän automaattisesti käyttäjään liitetyn ravintolan hallinnasta vastaavalle sivulle. Menupalkista voi valita, haluaako katsoa sisään tulleita tilauksia (Manage orders), vai muokata ravintolan ruokalistaa (Manage Menu Items). Tilauksia voi vain selata, ruokalistan annoksia lisätä, poistaa ja päivittää. Poistaminen ei oikeasti poista annosta, vaan ainoastaan tekee siitä inaktiivisen, jotta vanhojen tilausten annokset näkyvät oikein. Inaktiivisia annoksia ei voi selata mistään, mutta ne näkyvät vanhoissa tilauksissa normaalisti.
