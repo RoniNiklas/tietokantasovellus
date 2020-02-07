@@ -1,12 +1,12 @@
 # Käyttötapaukset
 
-User Story # 1 Completed  
+## User Story # 1 Completed  
 As a customer, I want to see what items are available, so that I can decide what I want to order  
-User Story # 2 Completed  
+## User Story # 2 Completed  
 As a customer, I want to make an order, so that I can get food  
-User Story # 3 Completed  
+## User Story # 3 Completed  
 As a customer, I want to save my info, so that I an place an order faster the next time I use the app  
-User Story # 4 Completed  
+## User Story # 4 Completed  
 As a restaurant owner, I want to see the orders that have been placed, so that I can send the customer food    
     I shouldn't be able to see other restaurants' orders  
     I shouldn't be able to see the orders if I'm not logged in  
