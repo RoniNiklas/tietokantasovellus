@@ -2,10 +2,10 @@ from flask import render_template, request, redirect, url_for
 from flask_login import login_user, logout_user
   
 from application import app
-from application.auth.models import User
-from application.auth.forms import LoginForm
+from application.models.user import User
+from application.forms.loginForm import LoginForm
 
-@app.route("/auth/login", methods = ["GET", "POST"])
+@app.route("/login", methods = ["GET", "POST"])
 def auth_login():
     if request.method == "GET":
         return render_template("auth/loginForm.html", form = LoginForm())
@@ -20,9 +20,9 @@ def auth_login():
 
 
     login_user(user)
-    return redirect('/orders/' + str(user.restaurantId))   
+    return redirect('/manager/' + str(user.restaurantId))   
 
-@app.route("/auth/logout")
+@app.route("/logout")
 def auth_logout():
     logout_user()
-    return redirect('/') 
+    return redirect('/login') 

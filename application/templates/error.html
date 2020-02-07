@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+
+{% block body %}
+{% if error %}
+<div>
+    <div class="alert alert-danger">{{error}}</div>
+</div>
+{% endif %}
+{% endblock %}

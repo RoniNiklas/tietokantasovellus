@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% from "owner/render_field.html" import render_field %}
+{% from "owner/nav_bar.html" import nav_bar %}
+{% block body %}
+{% if (( current_user.is_authenticated ) and (current_user.restaurantId|string == restaurantId)) %}
+<div>
+    Kirjautunut nimellä {{ current_user.name }}. <a href="{{ url_for('auth_logout') }}">Kirjaudu ulos</a>
+</div>
+{{nav_bar(restaurantId)}}
+<div>
+    <h5>Add a new Item on the menu:</h5>
+    <form method="POST" action="{{ '/manager/menu/' + restaurantId }}"">
+        <table>
+            {{render_field(form.name)}}
+            {{render_field(form.description)}}
+            {{render_field(form.price)}}
+            <tr>
+                <td colspan=" 2">
+                    <button type="submit" class="btn btn-primary" value="Add item">Add Item</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <h5>Current items:</h5>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Name of item</th>
+                <th scope="col">Description of item</th>
+                <th scope="col">Price of item</th>
+                <th scope="col">Edit item</th>
+                <th scope="col">Delete item</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr>
+                <td>{{ item.name }}</td>
+                <td>{{ item.description }}</td>
+                <td>{{ item.price }}</td>
+                <td><a href="{{ '/manager/menu/' + restaurantId + '/edit/' + item.id|string }}"><button
+                            class="btn btn-warning">Edit</button></a></td>
+                <td>
+                    <form action="{{ '/manager/menu/' + restaurantId + '/delete/' + item.id|string }}" method="post">
+                        <button class="btn btn-danger" type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% elif not (current_user.is_authenticated)%}
+<p>
+    You need to log in to manage the menu of your restaurant. <a href="/login">Login here</a>
+</p>
+{% elif not (current_user.restaurantId|string == restaurantId) %}
+<p>
+    You can only view your own restaurant's menu items.
+</p>
+{% endif %}
+{% endblock %}
