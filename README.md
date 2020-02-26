@@ -22,8 +22,8 @@ Ravintoloiden sivulla (root/ravintolanId) asiakas voi tehdä tilauksia. Painele 
     
 Kirjaudu sisään tai luo uusi ravintola osoitteessa [https://roni-tietokantasovellus.herokuapp.com/login](https://roni-tietokantasovellus.herokuapp.com/login).  
 Esimerkkitunnukset:   
-Käyttäjä: Maija    
-Salasana: Maija         
+Käyttäjä: Admin    
+Salasana: Password         
   
 Huomaa, että uudelle ravintolalle pitää lisätä annoksia ruokalistalle, ennenkuin se näkyy asiakasnäkymän listauksessa.    
 Huomaa, että salasanoja ei encryptata millään tavalla lähettäessä tai db:seen tallennettaessa, niin älä käytä testatessa mitään aitoa salasanaa.   
