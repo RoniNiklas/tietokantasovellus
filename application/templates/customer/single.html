@@ -2,6 +2,13 @@
 
 {% block body %}
 <div class="container">
+  <div>
+    <a href="/">
+      <button class="btn btn-success" style="margin:1em 0em;">
+        Back to the list of restaurants
+      </button>
+    </a>
+  </div>
   <div class="row card" id="restaurant" style="margin-top:10px;">
     <h5 class="card-header">Restaurant</h5>
     <div class="card-body">
@@ -10,67 +17,74 @@
         <div class="card-text" id="description"></div>
         <div id="address"></div>
         <div id="phone"></div>
-        <!-- <div id="url"></div> -->
       </div>
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-8 card" id="menu">
-      <h5 class="card-header" id="menuHeader">Menu</h5>
-      <ul class="card-body" id="menuItemList" />
+    <div class="col-sm-8" id="menu" style="padding: 0px !important;">
+      <div class="card">
+        <h5 class="card-header" id="menuHeader">Menu</h5>
+        <ul class="card-body" id="menuItemList" />
+      </div>
     </div>
-    <div class="col-sm-8 card" id="checkout" style="display:none">
-      <h5 class="card-header" id="checkoutHeader">Checkout</h5>
-      <div class="card-body" id="checkoutBody">
-        <div class="card-text" id="checkoutText">
-          <div class="alert alert-danger" role="alert" id="checkoutError" style="display:none">No errors</div>
-          <form>
-            <div class="form-group">
-              <label for="inputName">Your Name</label>
-              <input type="text" class="form-control" id="inputName" aria-describedby="nameHelp"
-                placeholder="Enter name" valueType="name">
-            </div>
-            <div class="form-group">
-              <label for="inputAddress">Your Address</label>
-              <input type="text" class="form-control" id="inputAddress" aria-describedby="addressHelp"
-                placeholder="Enter Address" valueType="address">
-            </div>
-            <div class="form-group">
-              <label for="inputPhone">Your Phone Number</label>
-              <input type="text" class="form-control" id="inputPhone" aria-describedby="phoneHelp"
-                placeholder="Enter Phone Number" valueType="phone">
-            </div>
-            <div class="form-check">
-              <input type="checkbox" class="form-check-input" id="rememberMeBox" value="save">
-              <label class="form-check-label" for="rememberMe">Remember Me</label>
-            </div>
-            <button type="button" class="btn btn-danger" onClick="openMenu()">Go Back to Menu</button>
-            <button type="button" class="btn btn-primary" onClick="sendOrder()">Send Order</button>
-          </form>
+    <div class="col-sm-8" id="checkout" style="padding: 0px !important; display:none">
+      <div class="card">
+        <h5 class="card-header" id="checkoutHeader">Checkout</h5>
+        <div class="card-body" id="checkoutBody">
+          <div class="card-text" id="checkoutText">
+            <div class="alert alert-danger" role="alert" id="checkoutError" style="display:none">No errors</div>
+            <form>
+              <div class="form-group">
+                <label for="inputName">Your Name</label>
+                <input type="text" class="form-control" id="inputName" aria-describedby="nameHelp"
+                  placeholder="Enter name" valueType="name">
+              </div>
+              <div class="form-group">
+                <label for="inputAddress">Your Address</label>
+                <input type="text" class="form-control" id="inputAddress" aria-describedby="addressHelp"
+                  placeholder="Enter Address" valueType="address">
+              </div>
+              <div class="form-group">
+                <label for="inputPhone">Your Phone Number</label>
+                <input type="text" class="form-control" id="inputPhone" aria-describedby="phoneHelp"
+                  placeholder="Enter Phone Number" valueType="phone">
+              </div>
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="rememberMeBox" value="save">
+                <label class="form-check-label" for="rememberMe">Remember Me</label>
+              </div>
+              <button type="button" class="btn btn-danger" onClick="openMenu()">Go Back to Menu</button>
+              <button type="button" class="btn btn-primary" onClick="sendOrder()">Send Order</button>
+            </form>
+          </div>
         </div>
       </div>
     </div>
-    <div class="col-sm-8 card" id="receipt" style="display:none">
-      <h5 class="card-header" id="receiptHeader">Your receipt</h5>
-      <div class="card-body" id="receiptBody">
-        <div class="card-text" id="receiptText">
-          <p>Thank you for your purchase! Underneath, you'll find a receipt for the order you've sent</p>
-          <p id="receiptName"></p>
-          <p id="receiptAddress"></p>
-          <p id="receiptPhone"></p>
-          <div id="receiptItems"></div>
-          <p id="receiptPrice" style="text-align: right"></p>
-          <Button type="button" class="btn btn-danger" onClick="openMenu()"> Close receipt </Button>
+    <div class="col-sm-8" id="receipt" style="padding: 0px !important; display:none">
+      <div class="card">
+        <h5 class="card-header" id="receiptHeader">Your receipt</h5>
+        <div class="card-body" id="receiptBody">
+          <div class="card-text" id="receiptText">
+            <p>Thank you for your purchase! Underneath, you'll find a receipt for the order you've sent</p>
+            <p id="receiptName"></p>
+            <p id="receiptAddress"></p>
+            <p id="receiptPhone"></p>
+            <div id="receiptItems"></div>
+            <p id="receiptPrice" style="text-align: right"></p>
+            <Button type="button" class="btn btn-danger" onClick="openMenu()"> Close receipt </Button>
+          </div>
         </div>
       </div>
     </div>
-    <div class="col-sm-4 card" id="order" style="left: 0px; top:0px; right:0px; position: sticky; z-index:1000;">
-      <h5 class="card-header" id="orderHeader">Your Items</h5>
-      <div class="card-body" id="orderBody">
-        <div class="card-text" id="orderText"></div>
-        <div class="align-items-end" id="buttons" style="margin:10px;">
-          <Button type="button" class="btn btn-danger" onClick="clearOrder()"> Clear Order </Button>
-          <Button type="button" class="btn btn-primary" onClick="openCheckOut()">Move to Checkout</button>
+    <div class="col-sm-4" id="order" style="padding:0px !important; left: 0px; top:0px; right:0px; position: sticky; z-index:1000;">
+      <div class="card">
+        <h5 class="card-header" id="orderHeader">Your Items</h5>
+        <div class="card-body" id="orderBody">
+          <div class="card-text" id="orderText"></div>
+          <div class="align-items-end" id="buttons" style="margin:10px;">
+            <Button type="button" class="btn btn-danger" onClick="clearOrder()"> Clear Order </Button>
+            <Button type="button" class="btn btn-primary" onClick="openCheckOut()">Move to Checkout</button>
+          </div>
         </div>
       </div>
     </div>
@@ -91,17 +105,16 @@
   }
 
   async function populateRestaurantInfo() {
-    const url = window.location.href + "api/restaurants/1"
+    const url = window.location.origin + "{{'/api/restaurants/' + restaurantId|string}}"
     let restaurant = await getJson(url)
     document.getElementById("name").innerText = restaurant.name
     document.getElementById("description").innerText = restaurant.description
     document.getElementById("address").innerText = "Osoite: " + restaurant.address
     document.getElementById("phone").innerText = "Numero: " + restaurant.phone
-    //document.getElementById("url").innerText = "Url: " + restaurant.url
   }
 
   async function populateMenu() {
-    const url = window.location.href + "api/menus/1"
+    const url = window.location.origin + "{{'/api/menus/' + restaurantId|string}}"
     let menu = await getJson(url)
     let ul = document.getElementById('menuItemList')
     menu.forEach(item => {
@@ -123,7 +136,7 @@
       button.appendChild(text)
       button.addEventListener("click", addToOrder, false);
       button.setAttribute("item", JSON.stringify(item))
-      ul.appendChild(itemName)
+      div.appendChild(itemName)
       li.appendChild(itemDescription)
       li.appendChild(itemPrice)
       li.appendChild(button)
@@ -247,7 +260,7 @@
         window.localStorage.setItem("roninAppAddress", order.address)
         window.localStorage.setItem("roninAppPhone", order.phone)
       }
-      let receipt = await postData(window.location.href + "api/orders/1", order)
+      let receipt = await postData(window.location.origin + "{{'/api/orders/' + restaurantId|string}}", order)
       createReceipt(receipt)
       openReceipt()
       createEmptyOrder()
@@ -262,7 +275,7 @@
     document.getElementById("receiptName").innerText = "Customer name: " + receipt.name
     document.getElementById("receiptAddress").innerText = "Customer address: " + receipt.address
     document.getElementById("receiptPhone").innerText = "Customer phone: " + receipt.phone
-    document.getElementById("receiptPrice").innerText = "Total price: " + receipt.price
+    document.getElementById("receiptPrice").innerText = "Total price: " + receipt.price + "€"
     const itemList = document.getElementById("receiptItems")
     filicide(itemList)
     receipt.items.forEach(item => {
@@ -283,7 +296,7 @@
   function openReceipt() {
     document.getElementById("menu").style.display = "none"
     document.getElementById("checkout").style.display = "none"
-    document.getElementById("order").style.display=  "none"
+    document.getElementById("order").style.display = "none"
     document.getElementById("receipt").style.display = ""
   }
 

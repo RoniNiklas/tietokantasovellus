@@ -8,9 +8,14 @@ from application.models.orderMenuItem import OrderMenuItem
 import json
 
 
+@app.route("/<restaurantId>")
+def restaurant_single(restaurantId):
+    return render_template("customer/single.html", restaurantId=restaurantId)
+
 @app.route("/")
-def front():
-    return render_template("customer/main.html")
+def restaurant_list():
+    restaurants = Restaurant.query.filter(Restaurant.menu.any()).all()
+    return render_template("customer/list.html", restaurants=restaurants)
 
 
 @app.route("/api/restaurants/<restaurantId>")
@@ -20,8 +25,7 @@ def getRestaurant(restaurantId):
         "name": restaurant.name,
         "description": restaurant.description,
         "address": restaurant.address,
-        "phone": restaurant.phone,
-        "url": restaurant.url
+        "phone": restaurant.phone
     })
 
 

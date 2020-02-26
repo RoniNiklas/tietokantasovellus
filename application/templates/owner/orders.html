@@ -2,16 +2,13 @@
 {% from "owner/nav_bar.html" import nav_bar %}
 {% block body %}
 {% if (( current_user.is_authenticated ) and (current_user.restaurantId|string == restaurantId)) %}
-<div>
-    Kirjautunut nimellä {{ current_user.name }}. <a href="{{ url_for('auth_logout') }}">Kirjaudu ulos</a>
-</div>
 {{nav_bar(restaurantId)}}
 <div>
     <table class="table">
         <thead>
             <tr>
                 <th scope="col">Time of order</th>
-                <th scope="col">Customer Name</thscope="col">
+                <th scope="col">Customer Name</th>
                 <th scope="col">Customer Address</th>
                 <th scope="col">Customer Phone</th>
                 <th scope="col">Order total</th>

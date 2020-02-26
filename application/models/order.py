@@ -11,7 +11,7 @@ class Order(db.Model):
     address = db.Column(db.String(144), nullable=False)
     phone = db.Column(db.String(144), nullable=False)
     price = db.Column(db.Integer, nullable=False)
-    items = db.relationship('OrderMenuItem', backref='order', lazy=True)
+    items = db.relationship('OrderMenuItem', backref='order', cascade="delete", lazy=True)
 
     def __init__(self, restaurantId, name, address, phone, price):
         self.restaurantId = restaurantId

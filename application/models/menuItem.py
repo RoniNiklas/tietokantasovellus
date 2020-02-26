@@ -14,7 +14,7 @@ class MenuItem(db.Model):
     price = db.Column(db.Float, nullable=False)
     active = db.Column(db.Boolean, nullable=False)
     ##photo = db.Column(db.LargeBinary, nullable=False)
-    orders = db.relationship('OrderMenuItem', backref='menuItem', lazy=True)
+    orders = db.relationship('OrderMenuItem', backref='menuItem', cascade="delete", lazy=True)
 
     def __init__(self, restaurantId, name, description, price, active):
         self.restaurantId = restaurantId

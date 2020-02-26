@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="root" style="margin:1em;">
+
+    <h5>All our restaurants</h5>
+    {% if restaurants|length > 0 %}
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Visit to place an order</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for restaurant in restaurants %}
+
+                <tr>
+
+                    <td>{{ restaurant.name }}</td>
+                    <td>{{ restaurant.description }}</td>
+                    <td>{{ restaurant.address }}</td>
+                    <td>{{ restaurant.phone }}</td>
+                    <td>
+                        <a href="{{ '/' + restaurant.id|string }}">
+                            <button class="btn btn-success">
+                                Visit
+                            </button>
+                        </a>
+                    </td>
+                </tr>
+
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div>
+        No restaurants in the database!
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

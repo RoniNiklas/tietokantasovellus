@@ -11,13 +11,13 @@ class Restaurant(db.Model):
     description = db.Column(db.String(144), nullable=False)
     address = db.Column(db.String(144), nullable=False)
     phone = db.Column(db.String(144), nullable=False)
-    url = db.Column(db.String(144), nullable=False)
-    menu = db.relationship('MenuItem', backref='restaurant', lazy=True)
+    menu = db.relationship('MenuItem', backref='restaurant',cascade='delete', lazy=True)
+    orders = db.relationship('Order', backref='restaurant', cascade='delete', lazy=True)
+    manager = db.relationship('User', backref='restaurant', cascade='delete', lazy=True)
 
-    def __init__(self, name, description, address, phone, url):
+    def __init__(self, name, description, address, phone):
         self.name = name
         self.description = description
         self.address = address
         self.phone = phone
-        self.url = url
         self.menu = []

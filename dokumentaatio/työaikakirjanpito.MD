@@ -5,3 +5,4 @@
 25-26.1: 1h; dokumentaatiota.   
 26.1: 4h; ravintolan omistajan kirjautuminen, postgresql:n käyttöönotto, tehtyjen tilausten selaaminen.  
 7.2: 8h; menuitem crud, wtforms harjoittelua, manager-käyttöliittymää ravintolan työntekijälle.
+26.2: xh; restaurant CRUD

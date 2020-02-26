@@ -1,31 +1,46 @@
 {% extends "layout.html" %}
 
+{% from "owner/render_field.html" import render_field %}
+{% from "owner/nav_bar.html" import nav_bar %}
+
 {% block body %}
+{{nav_bar(0)}}
 {{ error }}
-<div style="margin: auto">
-<form method="POST" action="{{ url_for('auth_login') }}">
-  <table>
-    <tr>
-      <td>
-	{{ form.username.label }}
-      </td>
-      <td>
-	{{ form.username }}
-      </td>
-    </tr>
-    <tr>
-      <td>
-	{{ form.password.label }}
-      </td>
-      <td>
-	{{ form.password }}
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2">
-	<input type="submit" value="Login"/>
-      </td>
-    </tr>
-</form>
+<div style="margin: 1em;">
+    <h5>Log in to manage your restaurant</h5>
+    <form method="POST" action="{{ url_for('auth_login') }}">
+        <table>
+            {{render_field(loginform.username)}}
+            {{render_field(loginform.password)}}
+            <tr>
+                <td colspan="2">
+                    <button type="submit" class="btn btn-primary">
+                        Log in
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <div style="margin:1em 0em;">
+        <h5>Or create a new user and restaurant</h5>
+        <form method="POST" action="/signup">
+            <table>
+                {{render_field(signupform.name)}}
+                {{render_field(signupform.newusername)}}
+                {{render_field(signupform.newpassword)}}
+                {{render_field(signupform.restaurantname)}}
+                {{render_field(signupform.restaurantdescription)}}
+                {{render_field(signupform.restaurantaddress)}}
+                {{render_field(signupform.restaurantphone)}}
+                <tr>
+                    <td colspan="2">
+                        <button type="submit" class="btn btn-primary">
+                            Create a restaurant
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
 </div>
 {% endblock %}
