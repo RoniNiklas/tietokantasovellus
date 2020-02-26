@@ -1,5 +1,5 @@
 from flask import render_template, request, redirect, url_for
-from flask_login import login_required, current_user
+from flask_login import login_required, current_user, logout_user
 
 from application import app, db
 from application.forms.restaurantInfoForm import restaurantInfoForm
@@ -50,6 +50,8 @@ def deleteRestaurant(browsedRestaurantId):
     restaurant = Restaurant.query.filter_by(
         id=browsedRestaurantId).first()
 
-    db.session.delete(restaurant)
-    db.session.commit()
-    return redirect('/login')
+    logout_user()
+    db.session().delete(restaurant)
+    db.session().commit()
+
+    return redirect('/')

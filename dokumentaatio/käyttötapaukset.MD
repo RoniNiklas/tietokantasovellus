@@ -22,19 +22,30 @@ As a restaurant owner, I want to add menu items, so that users can order new men
 As a restaurant owner, I want to delete menu items, so that I can stop serving items that do not create profit  
 - I shouldn't be able to delete other restaurants' menu items
 - Items do not actually get deleted, since they're needed for old orders.  
-## User Story # 7 Completed
+## User Story # 7 Completed   
 As a restaurant owner, I want to update menu items, so that I don't have to delete and create a new one whenever I want to make a small change to a menu item       
 - I shouldn't be able to edit other people's menu items  
 - Old versions of the item do not actually get deleted, since they're needed for old orders.  
-   
+## User Story # 8 Completed   
+As a restaurant owner, I want to create a new restaurant on the app  
+## User Story # 9 Completed   
+As a restaurant owner, I want to edit my restaurant's info    
+## User Story # 10 Completed   
+As a restaurant owner, I want to delete my restaurant      
   
 ## --- Potential future user stories, not prioritized     
 As a customer, I want to save an order template, so that I can place an order faster the next time I use the app  
 As a customer, I want to see my old orders, for whatever reason   
-As a restaurant owner, I want to create a new restaurant on the app  
 As a restaurant employee, I want to filter the orders list so that I can find relevant stuff faster  
+As a restaurant owner, I want to add other users to my restaurant, so that I don't have to share my credentials  
 
 ## Technical tasks  
+<<<<<<< HEAD
 Differentiate between restaurant OWNER (can browse orders, menu CRUD) and restaurant EMPLOYEE (can browse orders, but not manage menu).  
 Error messages to user from stupid stuff (like trying to browse nonexistent restaurant's orders, or manipulating order data manually before sending it to the server)  
 CSS styling needs work, especially for the manager view  
+=======
+Differentiate between restaurant OWNER (see orders, menu CRUD) and restaurant EMPLOYEE (can browse orders, but not manage menu).      
+Error messages to user from stupid stuff (like trying to browse nonexistent restaurant's orders, or manipulating order data manually before sending it to the server).   
+Encrypt passwords.   
+>>>>>>> 2f3dc50... updated readme and documentation
