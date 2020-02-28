@@ -32,6 +32,8 @@ As a restaurant owner, I want to create a new restaurant on the app
 As a restaurant owner, I want to edit my restaurant's info    
 ## User Story # 10 Completed   
 As a restaurant owner, I want to delete my restaurant      
+## User Story # 11 Completed   
+As a restaurant owner, I want my password to be hashed, so that when the database leaks I'm not in as much trouble.  
   
 ## --- Potential future user stories, not prioritized     
 As a customer, I want to save an order template, so that I can place an order faster the next time I use the app  
@@ -39,13 +41,6 @@ As a customer, I want to see my old orders, for whatever reason
 As a restaurant employee, I want to filter the orders list so that I can find relevant stuff faster  
 As a restaurant owner, I want to add other users to my restaurant, so that I don't have to share my credentials  
 
-## Technical tasks  
-<<<<<<< HEAD
-Differentiate between restaurant OWNER (can browse orders, menu CRUD) and restaurant EMPLOYEE (can browse orders, but not manage menu).  
-Error messages to user from stupid stuff (like trying to browse nonexistent restaurant's orders, or manipulating order data manually before sending it to the server)  
-CSS styling needs work, especially for the manager view  
-=======
+## --- Potential future tTechnical tasks   
 Differentiate between restaurant OWNER (see orders, menu CRUD) and restaurant EMPLOYEE (can browse orders, but not manage menu).      
-Error messages to user from stupid stuff (like trying to browse nonexistent restaurant's orders, or manipulating order data manually before sending it to the server).   
-Encrypt passwords.   
->>>>>>> 2f3dc50... updated readme and documentation
+Error messages to user from stupid stuff (like trying to browse a nonexistent restaurant's orders, or manipulating order data manually before sending it to the server).    

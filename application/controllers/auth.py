@@ -1,5 +1,7 @@
 from flask import render_template, request, redirect, url_for
 from flask_login import login_user, logout_user
+from flask_bcrypt import generate_password_hash
+from flask_bcrypt import check_password_hash
 
 from application import app, db
 from application.models.user import User
@@ -16,13 +18,16 @@ def auth_login():
 
     form = LoginForm(request.form)
     # mahdolliset validoinnit
-
     user = User.query.filter_by(
-        username=form.username.data, password=form.password.data).first()
+        username=form.username.data).first()
+
     if not user:
         return render_template("auth/loginForm.html", loginform=form, signupform=SignUpForm(),
-                               error="No such username or password")
+                               error="Invalid username or password")
 
+    if not check_password_hash(user.password, form.password.data):
+        return render_template("auth/loginForm.html", loginform=form, signupform=SignUpForm(),
+                               error="Invalid username or password")
     login_user(user)
     return redirect('/manager/orders/' + str(user.restaurantId))
 
@@ -47,7 +52,7 @@ def auth_signup():
         db.session().add(savedRestaurant)
         db.session().commit()
         savedUser = User(signupform.name.data, signupform.newusername.data,
-                         signupform.newpassword.data, savedRestaurant.id)
+                         generate_password_hash(signupform.newpassword.data).decode("utf-8"), savedRestaurant.id)
 
         db.session().add(savedUser)
         db.session().commit()

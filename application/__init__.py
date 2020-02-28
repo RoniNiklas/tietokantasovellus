@@ -1,7 +1,10 @@
 from flask import Flask
+from flask_bcrypt import Bcrypt
 app = Flask(__name__)
+bcrypt = Bcrypt(app)
 
 from flask_sqlalchemy import SQLAlchemy
+
 
 import os
 
@@ -57,5 +60,5 @@ if len(Restaurant.query.limit(1).all()[0].menu) == 0:
     db.session().commit()
 
 if len(User.query.all())== 0:
-    db.session().add(User("Make", "Admin", "Password", 1))
+    db.session().add(User("Make", "Admin", bcrypt.generate_password_hash("Password").decode("utf-8"), 1))
     db.session().commit()

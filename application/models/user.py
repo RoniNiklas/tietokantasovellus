@@ -11,7 +11,7 @@ class User(db.Model):
 
     name = db.Column(db.String(144), nullable=False)
     username = db.Column(db.String(144), unique=True, nullable=False)
-    password = db.Column(db.String(144), nullable=False)
+    password = db.Column(db.String(255), nullable=False)
 
     restaurantId = db.Column(db.Integer, db.ForeignKey('restaurant.id'),
                              nullable=False)

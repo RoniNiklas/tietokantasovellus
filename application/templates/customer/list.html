@@ -2,8 +2,22 @@
 
 {% block body %}
 <div class="root" style="margin:1em;">
-
-    <h5>All our restaurants</h5>
+    <div style="display:flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-content: center; margin:1em;">
+        <div><h5>All our restaurants</h5></div>
+        <div> 
+            Do you want to see your restaurant on this list or manage an existing restaurant?
+            <a href="/signup">
+                <button class="btn btn-success">
+                    Sign up
+                </button>
+            </a>
+            <a href="/login">
+                <button class="btn btn-success">
+                    Log in
+                </button>
+            </a>
+        </div>
+    </div>
     {% if restaurants|length > 0 %}
     <div>
         <table class="table">

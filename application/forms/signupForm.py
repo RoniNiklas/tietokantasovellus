@@ -15,8 +15,8 @@ class SignUpForm(FlaskForm):
     ])
     newpassword = PasswordField("Password", validators=[
         validators.DataRequired(),
-        validators.Length(min=3, max=144, message=(
-            u"Password has to be between 3 and 144 characters"))
+        validators.Length(min=3, max=60, message=(
+            u"Password has to be between 3 and 60 characters"))
     ])
     restaurantname = TextAreaField("Restaurant's name", validators=[
         validators.DataRequired(),

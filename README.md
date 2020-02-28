@@ -25,8 +25,7 @@ Esimerkkitunnukset:
 Käyttäjä: Admin    
 Salasana: Password         
   
-Huomaa, että uudelle ravintolalle pitää lisätä annoksia ruokalistalle, ennenkuin se näkyy asiakasnäkymän listauksessa.    
-Huomaa, että salasanoja ei encryptata millään tavalla lähettäessä tai db:seen tallennettaessa, niin älä käytä testatessa mitään aitoa salasanaa.   
+Huomaa, että uudelle ravintolalle pitää lisätä annoksia ruokalistalle ennenkuin se näkyy asiakasnäkymän listauksessa.      
 Sivusto siirtää käyttäjän automaattisesti käyttäjään liitetyn ravintolan hallinnasta vastaavalle sivulle.    
 Menupalkista voi valita, haluaako katsoa sisään tulleita tilauksia (Manage orders), muokata ravintolan ruokalistaa (Manage Menu Items) tai muokata ravintolan tietoja/ poistaa ravintolan (Manage Restaurant Info).   
 Tilauksia voi vain selata, ruokalistan annoksia lisätä, poistaa ja päivittää. Poistaminen ei oikeasti poista annosta, vaan ainoastaan tekee siitä inaktiivisen, jotta vanhojen tilausten annokset näkyvät oikein. Inaktiivisia annoksia ei voi selata mistään, mutta ne näkyvät vanhoissa tilauksissa normaalisti.   
