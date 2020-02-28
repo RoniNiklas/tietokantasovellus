@@ -76,7 +76,8 @@
         </div>
       </div>
     </div>
-    <div class="col-sm-4" id="order" style="padding:0px !important; left: 0px; top:0px; right:0px; position: sticky; z-index:1000;">
+    <div class="col-sm-4" id="order"
+      style="padding:0px !important; left: 0px; top:0px; right:0px; position: sticky; z-index:1000;">
       <div class="card">
         <h5 class="card-header" id="orderHeader">Your Items</h5>
         <div class="card-body" id="orderBody">
@@ -183,8 +184,8 @@
   }
 
   function createEmptyOrder() {
-    let order = {
-      restaurantId: 1,
+    const order = {
+      restaurantId: "{{restaurantId}}",
       name: window.localStorage.getItem("roninAppName") || "",
       address: window.localStorage.getItem("roninAppAddress") || "",
       phone: window.localStorage.getItem("roninAppPhone") || "",
@@ -193,8 +194,7 @@
       price: 0,
       nextId: 0
     }
-    setOrder(order)
-    populateOrder(order)
+    return order
   }
 
   function addToOrder(event) {
@@ -221,17 +221,26 @@
   }
 
   function getOrder() {
-    return JSON.parse(window.localStorage.getItem("order"))
+    const orders = JSON.parse(window.localStorage.getItem("orders")) || {}
+    console.log("GOT ORDERS", orders)
+    const order = orders["{{restaurantId}}"] || createEmptyOrder()
+    console.log("GOT ORDER", order)
+    return order
   }
 
   function setOrder(order) {
-    window.localStorage.setItem("order", JSON.stringify(order))
+    const orders = JSON.parse(window.localStorage.getItem("orders")) || {}
+    orders["{{restaurantId}}"] = order
+    console.log("SETTING ORDERS", orders)
+    window.localStorage.setItem("orders", JSON.stringify(orders))
   }
 
   function clearOrder() {
     openMenu()
     filicide(document.getElementById("orderText"))
-    createEmptyOrder()
+    const order = createEmptyOrder()
+    setOrder(order)
+    populateOrder(order)
     return clearOrder
   }
 
@@ -263,7 +272,9 @@
       let receipt = await postData(window.location.origin + "{{'/api/orders/' + restaurantId|string}}", order)
       createReceipt(receipt)
       openReceipt()
-      createEmptyOrder()
+      const emptyOrder = createEmptyOrder()
+      setOrder(emptyOrder)
+      populateOrder(emptyOrder)
     } else {
       document.getElementById("checkoutError").style.display = ""
       document.getElementById("checkoutError").innerText = "You need to fill in all information on the form and make sure your order contains at least one item."
