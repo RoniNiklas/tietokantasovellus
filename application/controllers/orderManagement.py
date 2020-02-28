@@ -19,6 +19,7 @@ def getOrders(browsedRestaurantId):
         return render_template("error.html", error="You can only browse your own restaurant's orders.")
 
     foundOrders = Order.query.filter_by(restaurantId=browsedRestaurantId).all()
+    foundOrders.reverse()
     for order in foundOrders:
         order.returnableItems = []
         for item in order.items:
