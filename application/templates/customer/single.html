@@ -53,7 +53,7 @@
                 <input type="checkbox" class="form-check-input" id="rememberMeBox" value="save">
                 <label class="form-check-label" for="rememberMe">Remember Me</label>
               </div>
-              <button type="button" class="btn btn-danger" onClick="openMenu()">Go Back to Menu</button>
+              <button type="button" class="btn btn-danger" onClick="openMenu()">Go Back to the Menu</button>
               <button type="button" class="btn btn-primary" onClick="sendOrder()">Send Order</button>
             </form>
           </div>
@@ -65,7 +65,7 @@
         <h5 class="card-header" id="receiptHeader">Your receipt</h5>
         <div class="card-body" id="receiptBody">
           <div class="card-text" id="receiptText">
-            <p>Thank you for your purchase! Underneath, you'll find a receipt for the order you've sent</p>
+            <p>Thank you for your purchase! Underneath, you'll find a receipt for the order you've sent.</p>
             <p id="receiptName"></p>
             <p id="receiptAddress"></p>
             <p id="receiptPhone"></p>
@@ -96,12 +96,6 @@
   async function getJson(url) {
     let response = await fetch(url)
     let data = await response.json()
-    console.log("URL")
-    console.log(url)
-    console.log("RESPONSE")
-    console.log(response)
-    console.log("DATA")
-    console.log(data)
     return data
   }
 
@@ -222,16 +216,13 @@
 
   function getOrder() {
     const orders = JSON.parse(window.localStorage.getItem("orders")) || {}
-    console.log("GOT ORDERS", orders)
     const order = orders["{{restaurantId}}"] || createEmptyOrder()
-    console.log("GOT ORDER", order)
     return order
   }
 
   function setOrder(order) {
     const orders = JSON.parse(window.localStorage.getItem("orders")) || {}
     orders["{{restaurantId}}"] = order
-    console.log("SETTING ORDERS", orders)
     window.localStorage.setItem("orders", JSON.stringify(orders))
   }
 
